@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hit-The-Beat – DIY-Schlagzeug & Software Hub</title>
+    <!-- Use a modern Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Ambient glowing backgrounds -->
+    <div class="background-decor decor-1"></div>
+    <div class="background-decor decor-2"></div>
+    <div class="background-decor decor-3"></div>
+
+    <header class="app-header">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" style="width: 42px; height: 42px; color: var(--accent-purple); filter: drop-shadow(0 0 8px rgba(129, 140, 248, 0.5));" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 3v18"></path>
+                <path d="M3 12h18"></path>
+                <circle cx="7" cy="7" r="1.5" fill="currentColor"></circle>
+                <circle cx="17" cy="7" r="1.5" fill="currentColor"></circle>
+                <circle cx="7" cy="17" r="1.5" fill="currentColor"></circle>
+                <circle cx="17" cy="17" r="1.5" fill="currentColor"></circle>
+            </svg>
+            <h1>Hit-The-Beat <span>DIY Hub</span></h1>
+        </div>
+        <p class="subtitle">Bauen, Flashen, Noten programmieren und Spielen – Alles an einem Ort.</p>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav class="main-navigation">
+        <button class="nav-tab-btn active" data-tab="anleitung">Installer & Bauanleitung</button>
+        <button class="nav-tab-btn" data-tab="player">Web-Player & Sequenzer</button>
+        <button class="nav-tab-btn" data-tab="downloads">Downloads & Ressourcen</button>
+        <button class="nav-tab-btn" data-tab="feedback">Feedback</button>
+    </nav>
+
+    <main>
+
+        <!-- ==========================================
+             TAB 1: INSTALLER & BAUANLEITUNG
+             ========================================== -->
+        <div id="panel-anleitung" class="tab-panel">
+            
+            <!-- Installer Flasher Section -->
+            <section class="hero" style="margin-bottom: 2rem;">
+                <h2>ESP32 Web Installer</h2>
+                <p>Installiere die Schlagzeug-Firmware blitzschnell direkt über deinen Browser auf deinem ESP32. Verbinde das Board per USB-Kabel mit dem PC und starte den Vorgang.</p>
+
+                <div class="install-card" style="width: 100%; max-width: 600px;">
+                    <!-- ESP Web Tools Script -->
+                    <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+                    <esp-web-install-button manifest="ESP-Code/manifest.json"></esp-web-install-button>
+                    <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); text-align: center;">
+                        <strong>Hinweis:</strong> Funktioniert nur in Web Serial fähigen Browsern wie Google Chrome, Microsoft Edge oder Opera.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Bauanleitung / Hardware Section -->
+            <section class="content-section">
+                <h2>Bauanleitung & Hardware-Dokumentation</h2>
+                <p>Mit dieser Anleitung kannst du dir dein eigenes DIY-Schlagzeug aufbauen. Die Sensoren erfassen Schläge über Piezo-Elemente, die Signale werden vom ESP32 ausgewertet und per USB-Verbindung an den PC übertragen.</p>
+
+                <h3>Benötigte Materialien</h3>
+                <div class="materials-grid">
+                    <div class="material-card">
+                        <h4>ESP32-Development Board</h4>
+                        <p>Das Gehirn des Schlagzeugs. Liest die analogen Sensorsignale ein und filtert Rauschen heraus.</p>
+                    </div>
+                    <div class="material-card">
+                        <h4>Piezo-Sensormodule (4x)</h4>
+                        <p>Wandeln Vibrationen in elektrische Spannung um. Sie sollten über einen analogen Ausgang (AO) verfügen.</p>
+                    </div>
+                    <div class="material-card">
+                        <h4>Taster (Push Button)</h4>
+                        <p>Dient zum Starten/Aktivieren des Messcodes oder Kalibrierung.</p>
+                    </div>
+                    <div class="material-card">
+                        <h4>10 kΩ Widerstand</h4>
+                        <p>Schützt den ESP32 und dient als Pull-Down-Widerstand für den Taster gegen Signalrauschen.</p>
+                    </div>
+                </div>
+
+                <h3>Schaltpläne & Platinen-Layout</h3>
+                <p>Hier findest du die genauen Verdrahtungspläne und die Layouts für die Entwicklung einer maßgeschneiderten Platine.</p>
+
+                <div class="image-showcase">
+                    <!-- Bild 1: Schaltplan -->
+                    <div class="image-showcase-item">
+                        <img src="Bilder/Schaltplan.png" alt="Grafischer Steckplatinen-Schaltplan" class="schema-image">
+                        <div class="image-explanation">
+                            <h4>1. Steckplatinen-Verdrahtungsplan</h4>
+                            <p>Diese Zeichnung zeigt die praktische Verkabelung auf einem Breadboard. Hier siehst du, wie die analogen Datenpins der 4 Piezo-Sensormodule an die analogen Eingänge des ESP32 angeschlossen sind:</p>
+                            <ul style="padding-left: 1rem; margin-top: 0.5rem; list-style-type: disc;">
+                                <li style="margin: 0 0 0.3rem 0; padding: 0; background: transparent; border: none; font-size: 0.85rem; color: var(--text-secondary);"><strong>Kick/Bass:</strong> GPIO 35 (Analog)</li>
+                                <li style="margin: 0 0 0.3rem 0; padding: 0; background: transparent; border: none; font-size: 0.85rem; color: var(--text-secondary);"><strong>Hi-Hat:</strong> GPIO 34 (Analog)</li>
+                                <li style="margin: 0 0 0.3rem 0; padding: 0; background: transparent; border: none; font-size: 0.85rem; color: var(--text-secondary);"><strong>Snare:</strong> GPIO 32 (Analog)</li>
+                                <li style="margin: 0 0 0.3rem 0; padding: 0; background: transparent; border: none; font-size: 0.85rem; color: var(--text-secondary);"><strong>Tom:</strong> GPIO 33 (Analog)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bild 2: Schaltplan1 -->
+                    <div class="image-showcase-item">
+                        <img src="Bilder/Schaltplan1.png" alt="Elektronischer Schaltplan Detail" class="schema-image">
+                        <div class="image-explanation">
+                            <h4>2. Detaillierter Elektronik-Schaltplan</h4>
+                            <p>Ein detaillierter, technischer Schaltplan. Er verdeutlicht die Spannungsversorgung (5V VCC an die Piezos, 3.3V an den Taster) und zeigt präzise, wie der Taster an <strong>GPIO 14</strong> angebunden ist. Die Ground-Leitungen (GND) aller Module fließen hier auf einen gemeinsamen Massepunkt am ESP32 zusammen.</p>
+                        </div>
+                    </div>
+
+                    <!-- Bild 3: platine schaltplan -->
+                    <div class="image-showcase-item">
+                        <img src="Bilder/platine schaltplan .jpeg" alt="Schaltplan für die Leiterplatte" class="schema-image">
+                        <div class="image-explanation">
+                            <h4>3. Platinen-Schaltplan (PCB Schematic)</h4>
+                            <p>Dieser Schaltplan dient als direkte Vorlage für den Entwurf einer gedruckten Leiterplatte (PCB). Er definiert die exakten elektrischen Netze, Steckerleisten (Header) für den ESP32 und Schraubklemmen für die Piezos, inklusive notwendiger Glättungskondensatoren zur Stabilisierung der Versorgungsspannung.</p>
+                        </div>
+                    </div>
+
+                    <!-- Bild 4: Platine layout -->
+                    <div class="image-showcase-item">
+                        <img src="Bilder/Platine layout.jpeg" alt="Gedrucktes Leiterplatten-Layout" class="schema-image">
+                        <div class="image-explanation">
+                            <h4>4. Leiterplatten-Layout (PCB Trace Layout)</h4>
+                            <p>Das physische Kupfer-Layout der Platine. Es zeigt die Leiterbahnen, Lötpads und Kupferebenen. Dieses kompakte Layout kann als "Shield" oder "Hat" direkt auf den ESP32 aufgesteckt werden. Die breiten Leiterbahnen minimieren Signalverluste und Störgeräusche bei der analogen Messung der Trommelschläge.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Schritt-für-Schritt Aufbauanleitung</h3>
+                <ul class="step-list">
+                    <li>
+                        <strong>Schritt 1: Stromversorgung vorbereiten</strong>
+                        Verbinde den 5V-Pin (VIN/5V) des ESP32 mit der VCC-Leitung deiner Sensormodule. Verbinde die GND-Pins aller Komponenten mit dem GND-Pin des ESP32, um ein einheitliches Bezugspotenzial herzustellen.
+                    </li>
+                    <li>
+                        <strong>Schritt 2: Piezosensoren verkabeln</strong>
+                        Schließe die 4 Piezomodule an. Der Analogausgang (AO/OUT) jedes Moduls führt zu folgenden Pins des ESP32:
+                        <ul>
+                            <li>Bass Drum (Kick) -> <strong>GPIO 35</strong></li>
+                            <li>Hi-Hat -> <strong>GPIO 34</strong></li>
+                            <li>Snare -> <strong>GPIO 32</strong></li>
+                            <li>Tom -> <strong>GPIO 33</strong></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Schritt 3: Taster mit Pull-Down-Widerstand verkabeln</strong>
+                        Verbinde eine Seite des Tasters mit der 3.3V-Spannung des ESP32. Verbinde die andere Seite des Tasters mit dem Pin <strong>GPIO 14</strong> des ESP32. Schließe an diesen Pin 14 zusätzlich den 10kOhm-Widerstand an und verbinde dessen anderes Ende mit GND (Pull-Down-Schaltung).
+                    </li>
+                    <li>
+                        <strong>Schritt 4: Firmware flashen & Kalibrieren</strong>
+                        Verbinde den ESP32 mit deinem PC, klicke oben auf den "Install" Button, um die Software aufzuspielen. Die Platine liest nun im 10ms-Intervall die analogen Spannungsspitzen aus.
+                    </li>
+                </ul>
+
+                <div class="warning-box">
+                    <h3>Sicherheitshinweis zur Tasterschaltung (Pull-Down)</h3>
+                    <p>Ohne den Pull-Down-Widerstand kann es zu Geister-Triggern kommen, da der digitale Pin 14 bei unbetätigtem Knopf in der Luft schwebt ("floating input") und elektromagnetische Störungen als Knopfdruck fehlinterpretiert.</p>
+                    <ul>
+                        <li><strong>Der Widerstand:</strong> Zieht den Pegel an Pin 14 dauerhaft auf 0V (Low), solange der Taster offen ist.</li>
+                        <li><strong>Der Tastendruck:</strong> Schließt den Stromkreis zu 3.3V, überwindet den Widerstand und zieht den Pegel sicher auf 3.3V (High).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MicroPython Source Code Section -->
+            <section class="content-section">
+                <h2>ESP32 Quellcodes (MicroPython)</h2>
+                <p>Wenn du den Code manuell anpassen oder über Tools wie Thonny/VS Code hochladen möchtest, kannst du die Quellcodedateien hier kopieren. Alternativ stehen sie im Download-Tab als Datei bereit.</p>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">main.py</span>
+                        <button class="copy-btn" data-target="esp-main-code">Code kopieren</button>
+                    </div>
+                    <pre><code id="esp-main-code"># importieren der Bibliotheken
+from machine import ADC, Pin
+import time
+import sys
+import select
+
+# Pin-Belegung
+# Pins Sensoren 
+Bass = ADC(35)
+HiHat = ADC(34)
+Snare = ADC(32)
+Tom = ADC(33)
+
+# einstellen des Messbereichs
+Bass.atten(ADC.ATTN_11DB)
+HiHat.atten(ADC.ATTN_11DB)
+Snare.atten(ADC.ATTN_11DB)
+Tom.atten(ADC.ATTN_11DB)
+
+Bass.width(ADC.WIDTH_12BIT)
+HiHat.width(ADC.WIDTH_12BIT)
+Snare.width(ADC.WIDTH_12BIT)
+Tom.width(ADC.WIDTH_12BIT)
+
+usb_abfrage = select.poll()
+usb_abfrage.register(sys.stdin, select.POLLIN)
+
+# Variablen
+threshold = 5 
+schlag = 0
+start_zeit = time.ticks_ms()
+zeit = 0
+Snare2 = 0
+Bass2 = 0
+HiHat2 = 0
+Tom2 = 0
+
+# Neue Variablen für optimiertes Zeit-Fenster und Entprellung
+hit_fenster_start = 0
+hit_aktiv = False
+sperr_zeit = 0
+
+print("Piezo-Ueberwachung gestartet...")
+
+# Hauptschleife
+while True:
+    # Auslesen der Sensoren
+    Bass1 = Bass.read()
+    HiHat1 = HiHat.read()
+    Snare1 = Snare.read()
+    Tom1 = Tom.read()
+    
+    aktueller_tick = time.ticks_ms()
+    # Zeit Berechnung
+    zeit = time.ticks_diff(aktueller_tick, start_zeit)
+    zeit = zeit / 1000
+    
+    # Piezo Abfrage (nur wenn nicht durch Debounce gesperrt)
+    if (Bass1 > threshold or HiHat1 > threshold or Snare1 > threshold or Tom1 > threshold) and time.ticks_diff(aktueller_tick, sperr_zeit) >= 0:
+        if not hit_aktiv:
+            hit_aktiv = True
+            hit_fenster_start = aktueller_tick
+        
+        # Trommeln in diesem winzigen 10ms-Fenster aufsammeln
+        if Bass1 > threshold: Bass2 = 1
+        if HiHat1 > threshold: HiHat2 = 1
+        if Snare1 > threshold: Snare2 = 1
+        if Tom1 > threshold: Tom2 = 1
+        
+    # Wenn Hit-Fenster aktiv ist und 10ms vergangen sind -> Senden
+    if hit_aktiv and time.ticks_diff(aktueller_tick, hit_fenster_start) > 10:
+        sound_parts = []
+        if Snare2 == 1: sound_parts.append("snare")
+        if Bass2 == 1: sound_parts.append("bass")
+        if HiHat2 == 1: sound_parts.append("hihat")
+        if Tom2 == 1: sound_parts.append("Tom1")
+        
+        sound = ", ".join(sound_parts)
+        
+        # Zurücksetzen der Trigger
+        Snare2 = 0
+        Bass2 = 0
+        HiHat2 = 0
+        Tom2 = 0
+        
+        if sound != "":
+            csv_zeile = f"{schlag};{Bass1};{HiHat1};{Snare1};{Tom1};{zeit};{sound}\n"
+            schlag = schlag + 1
+            sys.stdout.write(csv_zeile)
+        hit_aktiv = False
+        sperr_zeit = time.ticks_add(aktueller_tick, 60)</code></pre>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==========================================
+             TAB 2: WEB-PLAYER & SEQUENZER
+             ========================================== -->
+        <div id="panel-player" class="tab-panel hidden">
+            
+            <!-- Sub-tab Navigation inside Player Panel -->
+            <nav class="sub-tab-navigation">
+                <button class="sub-tab-btn active" data-tab="player">Noten-Player & Visualizer</button>
+                <button class="sub-tab-btn" data-tab="editor">Noten-Editor & Sequenzer</button>
+            </nav>
+
+            <!-- SUB-TAB 1: PLAYER / VISUALIZER -->
+            <div id="player-tab-content" class="sub-tab-content">
+                <!-- Dropzone / Loader Card -->
+                <section class="glass-card" style="margin-bottom: 2rem; padding: 2rem;">
+                    <div id="dropzone" class="dropzone">
+                        <div class="dropzone-content">
+                            <svg viewBox="0 0 24 24" class="upload-icon" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <h3>Zieh deine Spuren hierher</h3>
+                            <p>Zieh die <strong>JSON-Notendatei</strong> (.json) und deine <strong>MP3-Datei</strong> gleichzeitig hierhin.</p>
+                            <span class="divider">ODER</span>
+                            <div class="file-inputs">
+                                <label class="custom-file-input">
+                                    <input type="file" id="json-input" accept=".json,.jason">
+                                    <span>Noten laden (JSON)</span>
+                                </label>
+                                <label class="custom-file-input accent-blue">
+                                    <input type="file" id="audio-input" accept="audio/*">
+                                    <span>Lied laden (MP3)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status indicators -->
+                    <div class="status-panel">
+                        <div class="status-item" id="status-json">
+                            <span class="badge badge-error">Fehlt</span> Noten: Keine Datei ausgewählt
+                        </div>
+                        <div class="status-item" id="status-audio">
+                            <span class="badge badge-error">Fehlt</span> Audio: Keine Datei ausgewählt
+                        </div>
+                        <button id="demo-btn" class="demo-button">Demo-Song laden</button>
+                    </div>
+                </section>
+
+                <!-- Song Info Card -->
+                <section class="glass-card metadata-card hidden" id="metadata-card" style="margin-bottom: 2rem;">
+                    <div class="song-info">
+                        <div class="song-details">
+                            <h2 id="song-title">Songname</h2>
+                            <p>Schwierigkeit: <span id="song-difficulty" class="difficulty-tag">medium</span> | Noten: <span id="song-note-count">0</span></p>
+                        </div>
+                        <div class="visualizer-settings">
+                            <label class="toggle-control">
+                                <input type="checkbox" id="autoplay-drums" checked>
+                                <span class="control-label">Drums automatisch abspielen</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Visualizer Area -->
+                <section class="glass-card visualizer-card" style="margin-bottom: 2rem;">
+                    <div class="visualizer-wrapper">
+                        <!-- Canvas Waterfall -->
+                        <canvas id="visualizer-canvas"></canvas>
+                    </div>
+
+                    <!-- Visual Drum Pads -->
+                    <div class="drum-pads-container">
+                        <div class="drum-pad" data-drum="hi-hat" id="pad-hi-hat">
+                            <div class="pad-key">H / D</div>
+                            <div class="pad-label">Hi-Hat</div>
+                        </div>
+                        <div class="drum-pad" data-drum="snare" id="pad-snare">
+                            <div class="pad-key">S / F</div>
+                            <div class="pad-label">Snare</div>
+                        </div>
+                        <div class="drum-pad" data-drum="kick" id="pad-kick">
+                            <div class="pad-key">K / J</div>
+                            <div class="pad-label">Kick (Bass)</div>
+                        </div>
+                        <div class="drum-pad" data-drum="tom" id="pad-tom">
+                            <div class="pad-key">T / L</div>
+                            <div class="pad-label">Tom</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Controls Panel -->
+                <section class="glass-card controls-card">
+                    <div class="main-controls">
+                        <button id="play-btn" class="control-btn play-btn" disabled>
+                            <svg viewBox="0 0 24 24" class="icon-play" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            <svg viewBox="0 0 24 24" class="icon-pause hidden" fill="currentColor">
+                                <rect x="6" y="4" width="4" height="16"></rect>
+                                <rect x="14" y="4" width="4" height="16"></rect>
+                            </svg>
+                        </button>
+
+                        <div class="playback-timeline">
+                            <span id="time-current">00:00</span>
+                            <input type="range" id="progress-slider" min="0" max="100" value="0" disabled>
+                            <span id="time-duration">00:00</span>
+                        </div>
+                    </div>
+
+                    <div class="sub-controls">
+                        <div class="control-group">
+                            <label for="speed-slider">Tempo: <span id="speed-display">1.0x</span></label>
+                            <input type="range" id="speed-slider" min="0.5" max="1.5" step="0.25" value="1.0">
+                        </div>
+
+                        <div class="control-group">
+                            <label for="volume-slider">Lautstärke: <span id="volume-display">80%</span></label>
+                            <input type="range" id="volume-slider" min="0" max="100" value="80">
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SUB-TAB 2: EDITOR / SEQUENCER -->
+            <div id="editor-tab-content" class="sub-tab-content hidden">
+                <!-- Config Card -->
+                <section class="glass-card" style="margin-bottom: 2rem;">
+                    <h2>Schlagzeug-Sequenzer & Editor</h2>
+                    <p class="subtitle" style="margin-bottom: 1.5rem; text-align: left;">Klicke Noten im Raster an, um einen eigenen Beat zu bauen, und exportiere ihn als Spuren-Datei (JSON) für den Player.</p>
+                    
+                    <div class="editor-settings-grid">
+                        <div class="input-field">
+                            <label for="editor-song-name">Songname</label>
+                            <input type="text" id="editor-song-name" value="Mein Schlagzeug Beat" placeholder="Name des Beats">
+                        </div>
+                        <div class="input-field">
+                            <label for="editor-difficulty">Schwierigkeit</label>
+                            <select id="editor-difficulty">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="editor-resolution">Noten-Auflösung</label>
+                            <select id="editor-resolution">
+                                <option value="4">4er Takt (1 2 3 4)</option>
+                                <option value="8">8er Takt (1 + 2 + 3 + 4 +)</option>
+                                <option value="16" selected>16er Takt (1 e + d 2 e + d...)</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="editor-preset-select">Muster-Generator (Presets)</label>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <select id="editor-preset-select" style="flex: 1; min-width: 0;">
+                                    <option value="none" selected>-- Rhythmus wählen --</option>
+                                    <option value="rock">Standard Rock Beat</option>
+                                    <option value="dance">Dance Beat (Four on the Floor)</option>
+                                    <option value="stressed">Stressed Out (BPM 85)</option>
+                                    <option value="tom_fill">Tom-Tom Fill-In</option>
+                                </select>
+                                <button id="editor-preset-generate-btn" class="primary-btn" style="padding: 0 1rem; height: 100%; white-space: nowrap; font-size: 0.85rem; border-radius: 12px;">Erstellen</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="editor-sliders-grid" style="margin-top: 1.5rem;">
+                        <div class="control-group">
+                            <label for="editor-bpm">Tempo (BPM): <span id="editor-bpm-display">120</span></label>
+                            <input type="range" id="editor-bpm" min="40" max="300" value="120">
+                        </div>
+                        <div class="control-group">
+                            <label for="editor-bars">Takte (Bars): <span id="editor-bars-display">4</span></label>
+                            <input type="range" id="editor-bars" min="1" max="90" step="1" value="4">
+                        </div>
+                        <div class="control-group">
+                            <label for="editor-beats-per-bar">Schläge pro Takt: <span id="editor-beats-display">4</span></label>
+                            <input type="range" id="editor-beats-per-bar" min="2" max="12" step="1" value="4">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Table Sequencer container -->
+                <section class="glass-card" style="padding: 1.5rem; margin-bottom: 2rem;">
+                    <div class="sequencer-scroll-container" id="sequencer-grid-container">
+                        <!-- Table generated in JS -->
+                    </div>
+                </section>
+
+                <!-- Footer editor controls -->
+                <div class="editor-footer">
+                    <!-- Controls left -->
+                    <section class="glass-card editor-controls-card">
+                        <div class="editor-action-buttons">
+                            <button id="editor-play-btn" class="control-btn play-btn">
+                                <svg viewBox="0 0 24 24" class="icon-play" fill="currentColor">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                                <svg viewBox="0 0 24 24" class="icon-pause hidden" fill="currentColor">
+                                    <rect x="6" y="4" width="4" height="16"></rect>
+                                    <rect x="14" y="4" width="4" height="16"></rect>
+                                </svg>
+                            </button>
+                            
+                            <button id="editor-clear-btn" class="secondary-btn">Raster leeren</button>
+                            <button id="editor-load-player-btn" class="secondary-btn accent-blue-border">In Player laden</button>
+                            <button id="editor-export-btn" class="primary-btn">JSON herunterladen</button>
+                        </div>
+                        <p class="shortcut-tip">Tipp: Im Editor-Wiedergabemodus läuft ein kontinuierlicher Loop.</p>
+                    </section>
+
+                    <!-- Timings list right -->
+                    <section class="glass-card timings-card">
+                        <h3>Exakte Timings</h3>
+                        <div class="timings-list" id="timings-list">
+                            <!-- Timings generated in JS -->
+                            <span class="empty-list-msg">Noch keine Noten gesetzt.</span>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             TAB 3: DOWNLOADS & RESSOURCEN
+             ========================================== -->
+        <div id="panel-downloads" class="tab-panel hidden">
+            <section class="content-section">
+                <h2>Download-Center & Ressourcen</h2>
+                <p>Hier findest du alle wichtigen Softwarepakete, Codes, Diagramme und 3D-Druckdateien zum bequemen Herunterladen.</p>
+
+                <div class="resource-grid">
+                    
+                    <!-- Card 1: PC Serial App Python -->
+                    <div class="resource-card">
+                        <div class="resource-info-badge">v1.1</div>
+                        <div class="resource-icon">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <div class="resource-meta">
+                            <span class="resource-title">PC-Auswertungssoftware (Windows)</span>
+                            <span class="resource-desc">Eigenständige Windows-App (.zip) zur Auswertung der seriellen ESP32-Messwerte, Soundwiedergabe und UDP-Kommunikation. Keine Python-Installation nötig.</span>
+                        </div>
+                        <a href="DIY-APP/DIY-Schlagzeug-App.zip" download class="resource-action-btn">
+                            <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                            App herunterladen (31.0 MB)
+                        </a>
+                    </div>
+
+                    <!-- Card 2: MicroPython ZIP Codes -->
+                    <div class="resource-card">
+                        <div class="resource-info-badge">Python</div>
+                        <div class="resource-icon">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="resource-meta">
+                            <span class="resource-title">ESP32 MicroPython Quellcode</span>
+                            <span class="resource-desc">Die originalen python-Dateien (main.py, boot.py) für die manuelle Übertragung auf den Mikrocontroller mittels Thonny.</span>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+                            <a href="ESP-Code/main.py" download class="resource-action-btn secondary" style="flex: 1; font-size: 0.85rem;">main.py</a>
+                            <a href="ESP-Code/boot.py" download class="resource-action-btn secondary" style="flex: 1; font-size: 0.85rem;">boot.py</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: 3D Model STL -->
+                    <div class="resource-card" style="padding-top: 1rem;">
+                        <div class="resource-info-badge">3D STL</div>
+                        
+                        <!-- 3D Casing Preview Image -->
+                        <div style="width: 100%; height: 120px; border-radius: 10px; overflow: hidden; border: 1px solid var(--surface-border); background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;">
+                            <img src="Bilder/3d_drum_pad_housing.png" alt="3D Modell Gehäuse Vorschau" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        
+                        <div class="resource-meta">
+                            <span class="resource-title">3D-Gehäuse-Modell (STL)</span>
+                            <span class="resource-desc">Die 3D-Druckdatei für die Halterung eines Piezomuduls. Kann auf jedem standardmäßigen FDM-Drucker mit PLA/PETG ausgedruckt werden.</span>
+                        </div>
+                        <a href="3D-Modele/Hit-The-Beat.stl" download class="resource-action-btn">
+                            <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                            STL herunterladen (235 KB)
+                        </a>
+                    </div>
+
+                    <!-- Card 4: Finished Web Game Zip -->
+                    <div class="resource-card">
+                        <div class="resource-info-badge">Web-HTML5</div>
+                        <div class="resource-icon">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="resource-meta">
+                            <span class="resource-title">Noten-Player Web-App (Fertig)</span>
+                            <span class="resource-desc">Das fertige Rhythmus-Spiel als Web-Version im .zip Archiv. Entpacken und direkt lokal im Browser durch Öffnen der index.html starten.</span>
+                        </div>
+                        <a href="DIY-APP/Schlagzeug-Player.zip" download class="resource-action-btn">
+                            <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                            Web-Spiel (.zip) laden
+                        </a>
+                    </div>
+
+                    <!-- Card 5: PLACEHOLDER FOR WINDOWS GAME -->
+                    <div class="resource-card placeholder">
+                        <div class="resource-info-badge" style="background: rgba(56, 189, 248, 0.1); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.3);">Godot PC</div>
+                        <div class="resource-icon">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="resource-meta">
+                            <span class="resource-title">Hit-The-Beat (Windows-Spiel)</span>
+                            <span class="resource-desc">Die native Windows-Version des Godot-Spiels. Bietet extrem niedrige Audiolatenz und nativen Support für MIDI-Schlagzeuge.</span>
+                        </div>
+                        <button class="resource-action-btn disabled" disabled>
+                            Windows-Version (In Kürze)
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ==========================================
+             TAB 4: FEEDBACK
+             ========================================== -->
+        <div id="panel-feedback" class="tab-panel hidden">
+            <section class="content-section">
+                <h2>Dein Feedback</h2>
+                <p>Hast du Fragen, Verbesserungsvorschläge oder möchtest deine eigenen Modifikationen teilen? Wir freuen uns über deine Rückmeldung!</p>
+                
+                <div class="feedback-container" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; margin-top: 2rem;">
+                    
+                    <!-- Left: Feedback Form -->
+                    <div class="glass-card feedback-form-card" style="padding: 2rem; border-radius: 20px;">
+                        <form id="feedback-form" onsubmit="return false;">
+                            <div class="input-field" style="margin-bottom: 1.2rem;">
+                                <label for="fb-name">Name</label>
+                                <input type="text" id="fb-name" placeholder="Dein Name" required>
+                            </div>
+                            <div class="input-field" style="margin-bottom: 1.2rem;">
+                                <label for="fb-email">E-Mail Adresse</label>
+                                <input type="email" id="fb-email" placeholder="name@beispiel.de" required>
+                            </div>
+                            <div class="input-field" style="margin-bottom: 1.2rem;">
+                                <label for="fb-category">Kategorie</label>
+                                <select id="fb-category">
+                                    <option value="general">Allgemeines Feedback</option>
+                                    <option value="hardware">Hardware / Bauanleitung</option>
+                                    <option value="player">Web-Player & Editor</option>
+                                    <option value="bug">Fehler / Bug melden</option>
+                                    <option value="feature">Feature-Wunsch</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Star Rating -->
+                            <div class="rating-field" style="margin-bottom: 1.5rem;">
+                                <label style="display: block; font-size: 0.95rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem;">Bewertung</label>
+                                <div id="fb-stars" class="stars-container" style="display: flex; gap: 0.5rem; font-size: 1.8rem; color: rgba(255,255,255,0.15); cursor: pointer;">
+                                    <span class="star" data-rating="1">★</span>
+                                    <span class="star" data-rating="2">★</span>
+                                    <span class="star" data-rating="3">★</span>
+                                    <span class="star" data-rating="4">★</span>
+                                    <span class="star" data-rating="5">★</span>
+                                </div>
+                                <input type="hidden" id="fb-rating" value="0">
+                            </div>
+                            
+                            <div class="input-field" style="margin-bottom: 1.5rem;">
+                                <label for="fb-message">Nachricht / Feedback</label>
+                                <textarea id="fb-message" rows="5" placeholder="Schreibe uns deine Meinung..." style="width: 100%; padding: 0.8rem; border-radius: 12px; background: rgba(0,0,0,0.25); border: 1px solid var(--surface-border); color: var(--text-primary); font-family: inherit; font-size: 0.95rem; resize: vertical;" required></textarea>
+                            </div>
+                            
+                            <button type="submit" id="fb-submit-btn" class="primary-btn" style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 0.5rem;">Feedback senden</button>
+                        </form>
+                        
+                        <!-- Form Success Message (hidden by default) -->
+                        <div id="fb-success-msg" class="hidden" style="text-align: center; padding: 2rem 0; animation: fadeIn 0.4s ease-out;">
+                            <div class="success-icon-wrapper" style="width: 70px; height: 70px; border-radius: 50%; background: rgba(34, 197, 94, 0.15); border: 2px solid #4ade80; color: #4ade80; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; font-size: 2.2rem;">✓</div>
+                            <h3 style="color: #4ade80; margin: 0 0 0.5rem 0; font-size: 1.4rem;">Vielen Dank!</h3>
+                            <p style="margin: 0; color: var(--text-secondary);">Dein Feedback wurde erfolgreich übermittelt und auf dem Server gespeichert.</p>
+                            <button id="fb-reset-btn" class="secondary-btn" style="margin-top: 1.5rem; padding: 0.5rem 1.5rem; font-size: 0.85rem;">Neues Feedback senden</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Recent Feedbacks List -->
+                    <div class="glass-card recent-feedbacks-card" style="padding: 2rem; border-radius: 20px; display: flex; flex-direction: column;">
+                        <h3 style="margin-top: 0; margin-bottom: 1rem; color: #c7d2fe; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.5rem;">Bisherige Rückmeldungen</h3>
+                        <div id="fb-recent-list" style="flex: 1; overflow-y: auto; max-height: 420px; display: flex; flex-direction: column; gap: 1rem; padding-right: 0.5rem;">
+                            <!-- Items populated dynamically by JS -->
+                            <span class="empty-list-msg" style="color: var(--text-secondary); opacity: 0.6; font-style: italic;">Noch keine Rückmeldungen vorhanden.</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Unified scripting -->
+    <script src="app.js"></script>
+</body>
+
+</html>

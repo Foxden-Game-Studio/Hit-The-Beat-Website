@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hit the Beat – Anleitung</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="anleitung.css">
+</head>
+
+<body>
+
+    <!-- ══ NAVBAR (1:1 wie index-main.html) ════════════════════════════════ -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">🥁 Hit the Beat</a>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        Start
+                    </a>
+                </li>
+                <li>
+                    <a href="esp32-Anleitung.html" class="active">
+                        <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        Anleitung
+                    </a>
+                </li>
+                <!-- ══ NEUEN NAV-EINTRAG HIER HINZUFÜGEN ══════════════════
+                <li>
+                    <a href="meine-seite.html">
+                        <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 4v16m8-8H4"/></svg>
+                        Meine Seite
+                    </a>
+                </li>
+                ══════════════════════════════════════════════════════════ -->
+            </ul>
+
+            <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menü -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">
+            <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            Start
+        </a>
+        <a href="esp32-Anleitung.html" class="active">
+            <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            Anleitung
+        </a>
+        <!-- ══ MOBILEN EINTRAG HIER HINZUFÜGEN ═══════════════════════════
+        <a href="meine-seite.html">
+            <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 4v16m8-8H4"/></svg>
+            Meine Seite
+        </a>
+        ══════════════════════════════════════════════════════════════════ -->
+    </div>
+
+    <!-- ══ SEITENINHALT ═════════════════════════════════════════════════════ -->
+    <main>
+
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <h1>ESP32 Anleitung</h1>
+            <p class="subtitle">Installiere die Firmware, lade die Windows-App herunter und baue dein eigenes Schlagzeug – Schritt für Schritt erklärt.</p>
+        </section>
+
+        <!-- ── 1. Firmware installieren ──────────────────────────────────── -->
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+                </div>
+                <h2>Firmware installieren</h2>
+            </div>
+
+            <p>Verbinde das ESP32-Board per USB mit dem Computer und klicke auf den Button. Die Software wird automatisch übertragen – kein Programmieren nötig.</p>
+
+            <div class="install-box">
+                <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+                <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
+                <span class="install-hint">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Benötigt einen Web Serial API-fähigen Browser (Chrome / Edge)
+                </span>
+            </div>
+        </section>
+
+        <!-- ── 2. Windows-App herunterladen ──────────────────────────────── -->
+        <section class="card" style="text-align: center;">
+            <div class="card-header" style="justify-content: center; border: none; padding: 0; margin-bottom: 1.2rem;">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                </div>
+                <h2>Windows-App herunterladen</h2>
+            </div>
+
+            <p>Die App wertet die Sensordaten aus und erzeugt echte Schlagzeugsounds in Echtzeit. Sie ist eigenständig verpackt und benötigt <strong>keine</strong> Installation von Python.</p>
+
+            <a href="DIY-APP/DIY-Schlagzeug-App.zip" download class="download-btn">
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                App für Windows herunterladen (.zip)
+            </a>
+        </section>
+
+        <!-- ── 3. Bauanleitung ────────────────────────────────────────────── -->
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                </div>
+                <h2>Bauanleitung</h2>
+            </div>
+
+            <!-- Schaltplan -->
+            <img src="./bilder/Schaltplan.png" alt="Schaltplan ESP32 Schlagzeug" class="schema-image">
+            <p>Der Schaltplan zeigt alle Verbindungen zwischen ESP32, den vier Piezo-Sensormodulen und dem Taster auf einen Blick.</p>
+
+            <!-- Materialien -->
+            <p class="section-label">Materialien</p>
+            <div class="materials-grid">
+                <a href="https://www.reichelt.de/de/de/shop/produkt/entwicklungsboard_esp32-wroom-32e-341303?search=Esp32&" class="linkm">
+                <div class="material-item">
+                     <strong>ESP32-Board</strong>
+                    <p>Zentrale Steuereinheit mit analogen GPIO-Pins für die Sensoren.</p>
+                </div></a>
+                <a href="https://www.reichelt.de/de/de/shop/produkt/piezoelement_6_4_khz_400_ohm-145914" class="linkm">
+                <div class="material-item">
+                    <strong>Piezo-Sensormodule (4×)</strong>
+                    <p>Erkennen Erschütterungen über einen analogen Ausgangspin.</p>
+                </div></a>
+                <a href="https://www.reichelt.de/de/de/shop/produkt/kurzhubtaster_printmontage_1_schliesser_6_x_6_x_5_mm-360043" class="linkm">
+                <div class="material-item">
+                    <strong>Taster</strong>
+                    <p>Wird zum Aktivieren / Zurücksetzen des Programms verwendet.</p>
+                </div></a>
+                <a href="https://www.reichelt.de/de/de/shop/produkt/melf_widerstand_0204_10k_ohm_400_mw_1_-277785" class="linkm">
+                <div class="material-item">
+                    <strong>Widerstand 10 kΩ</strong>
+                    <p>Pull-Down-Widerstand zum Schutz des Taster-Eingangs.</p>
+                </div></a>
+            </div>
+
+            <!-- Schritte -->
+            <p class="section-label">Schritt-für-Schritt</p>
+            <ul class="step-list">
+                <li>
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <strong>ESP32 vorbereiten</strong>
+                        <p>Identifiziere die Pins: 5V, 3.3V, GND sowie GPIO 14, 32, 33, 34 und 35. Diese sind auf dem Board beschriftet.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <strong>Piezo-Sensormodule anschließen</strong>
+                        <p>VCC aller vier Module → 5V des ESP32. GND aller Module → GND des ESP32. Analoge Ausgänge → GPIO 32, 33, 34, 35 (je ein Modul).</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <strong>Piezo-Sensoren verbinden</strong>
+                        <p>Jeden der vier Sensoren mit zwei Drähten an den Eingang des jeweils zugehörigen Sensormoduls löten oder stecken.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">4</div>
+                    <div class="step-body">
+                        <strong>Taster anschließen</strong>
+                        <p>Ein Anschluss des Tasters → 3.3V. Der andere Anschluss → GPIO 14 sowie über den 10 kΩ Widerstand → GND (Pull-Down).</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">5</div>
+                    <div class="step-body">
+                        <strong>Firmware flashen & testen</strong>
+                        <p>ESP32 per USB anschließen, oben auf „Installieren" klicken und anschließend die Windows-App starten.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Warnhinweis -->
+            <div class="warning-box">
+                <div class="warning-box-header">
+                    <span>⚠️</span>
+                    <strong>Wichtiger Hinweis: Pull-Down-Widerstand am Taster</strong>
+                </div>
+                <p>Ohne Widerstand „schwebt" GPIO 14, wenn der Taster nicht gedrückt ist, und liefert zufällige High/Low-Werte (Flackern).</p>
+                <ul class="warning-items">
+                    <li><strong>Ohne Widerstand:</strong> Der Pin liest unkontrollierte Zufallswerte, wenn der Taster offen ist.</li>
+                    <li><strong>Mit 10 kΩ Pull-Down:</strong> Ein Ende des Widerstands an GPIO 14, das andere an GND. Der Pin liegt sicher auf Low, bis der Taster gedrückt wird und 3.3V anlegt.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Hamburger-Script (identisch mit index-main.html) -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            const open = mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('open', open);
+            hamburger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                hamburger.classList.remove('open');
+            });
+        });
+    </script>
+
+</body>
+</html>

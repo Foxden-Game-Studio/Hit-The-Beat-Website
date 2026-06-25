@@ -1,0 +1,270 @@
+:root {
+    --bg-color: #0f1016;
+    --surface-color: rgba(255, 255, 255, 0.03);
+    --surface-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-primary: #6366f1;
+    --accent-glow: rgba(99, 102, 241, 0.4);
+    --accent-warning: #f59e0b;
+    --accent-warning-bg: rgba(245, 158, 11, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at top, rgba(99, 102, 241, 0.15), transparent 40%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    max-width: 900px;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    animation: fadeIn 1s ease-out;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+p.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+}
+
+.install-card {
+    background: var(--surface-color);
+    border: 1px solid var(--surface-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.install-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-glow);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+esp-web-install-button {
+    --esp-tools-button-color: var(--text-primary);
+    --esp-tools-button-text-color: var(--bg-color);
+    --esp-tools-button-border-radius: 99px;
+    font-family: inherit;
+}
+
+/* Content Section */
+.content-section {
+    background: var(--surface-color);
+    border: 1px solid var(--surface-border);
+    border-radius: 24px;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.2s;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--surface-border);
+    padding-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #c7d2fe;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul>li {
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-primary);
+}
+
+ul>li>strong {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+ul ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+}
+
+ul ul li {
+    position: relative;
+    margin-bottom: 0.8rem;
+    color: var(--text-secondary);
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+ul ul li::before {
+    content: "•";
+    color: var(--accent-primary);
+    position: absolute;
+    left: -1rem;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+strong {
+    color: var(--text-primary);
+}
+
+/* Image Styling */
+.schema-image {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    border: 1px solid var(--surface-border);
+    transition: transform 0.3s ease;
+}
+
+.schema-image:hover {
+    transform: scale(1.02);
+}
+
+/* Important Warning Box */
+.warning-box {
+    background-color: var(--accent-warning-bg);
+    border-left: 4px solid var(--accent-warning);
+    padding: 1.5rem;
+    border-radius: 0 12px 12px 0;
+    margin-top: 3rem;
+    position: relative;
+}
+
+.warning-box h3 {
+    margin-top: 0;
+    color: var(--accent-warning);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.warning-box h3::before {
+    content: "⚠️";
+    font-size: 1.3rem;
+}
+
+.warning-box p {
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1rem;
+}
+
+.warning-box ul {
+    margin-top: 1rem;
+}
+
+.warning-box ul li {
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    main {
+        padding: 2rem 1rem;
+        gap: 2rem;
+    }
+
+    .content-section {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+}
