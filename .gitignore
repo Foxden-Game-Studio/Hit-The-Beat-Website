@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Netlify Blob Storage cache (local dev only)
+.netlify/
+
+# macOS
+.DS_Store
+
+# Private feedback data (not committed to git)
+feedbacks.json

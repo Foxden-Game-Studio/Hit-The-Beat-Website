@@ -1678,11 +1678,11 @@ document.addEventListener('DOMContentLoaded', () => {
             list.unshift(feedbackData); // Add to beginning
             localStorage.setItem('htb_feedbacks', JSON.stringify(list));
 
-            // Save to server (save_feedback.php → feedbacks.json)
+            // Save to server (Netlify Function → Blob Storage)
             const submitBtn = document.getElementById('fb-submit-btn');
             if (submitBtn) submitBtn.disabled = true;
 
-            fetch('save_feedback.php', {
+            fetch('/api/save-feedback', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(feedbackData)
